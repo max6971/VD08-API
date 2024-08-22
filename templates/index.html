@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Random Quote</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Функция для получения новой цитаты
+        function fetchQuote() {
+            $.ajax({
+                url: '/quote',
+                method: 'GET',
+                success: function(data) {
+                    $('#quote-content').text(`“${data.quote}”`);
+                    $('#quote-author').text(`— ${data.author}`);
+                },
+                error: function() {
+                    $('#quote-content').text("Не удалось получить цитату.");
+                    $('#quote-author').text("");
+                }
+            });
+        }
+
+        // Получаем первую цитату при загрузке страницы
+        $(document).ready(function() {
+            fetchQuote();
+            // Привязываем функцию fetchQuote к кнопке
+            $('#new-quote-btn').click(fetchQuote);
+        });
+    </script>
+</head>
+<body>
+    <h1>Случайная цитата</h1>
+    <blockquote id="quote-content"></blockquote>
+    <p id="quote-author"></p>
+    <button id="new-quote-btn">Получить новую цитату</button>
+</body>
+</html>

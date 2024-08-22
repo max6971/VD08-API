@@ -12,12 +12,13 @@
                 method: 'GET',
                 success: function(data) {
                     $('#quote-content').text(`“${data.quote}”`);
+                    $('#translated-quote-content').text(`“${data.translated_quote}”`);
                     $('#quote-author').text(`— ${data.author}`);
                 },
                 error: function() {
                     $('#quote-content').text("Не удалось получить цитату.");
-                    $('#quote-author').text("");
-                }
+                    $('#translated-quote-content').text("");
+                    $('#quote-author').text("");}
             });
         }
 
@@ -32,6 +33,7 @@
 <body>
     <h1>Случайная цитата</h1>
     <blockquote id="quote-content"></blockquote>
+    <p id="translated-quote-content"></p>
     <p id="quote-author"></p>
     <button id="new-quote-btn">Получить новую цитату</button>
 </body>
